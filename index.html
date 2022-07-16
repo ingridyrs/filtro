@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Index</title>
+</head>
+
+<body>
+    <div id="intro">
+        <label>Veja quantos dias você precisaria trabalhar por país no ano de
+            <select>
+                <option value="2019" selected>2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+            </select> para comprar o novo iPhone:
+        </label>
+        <ol class="grafico">
+        </ol>
+    </div>
+    <script>
+
+        /* Ler dados */
+        let paises =
+            [
+                {
+                    "2019": 89.1,
+                    "2020": "",
+                    "2021": 92.5,
+                    "nome": "Turquia"
+                },
+                {
+                    "2019": "",
+                    "2020": 88.2,
+                    "2021": 90.2,
+                    "nome": "Filipinas"
+                },
+                {
+                    "2019": 96.7,
+                    "2020": 87,
+                    "2021": "",
+                    "nome": "Ucrânia"
+                },
+                {
+                    "2019": 89.7,
+                    "2020": 86.5,
+                    "2021": "",
+                    "nome": "Colômbia"
+                },
+                {
+                    "2019": 63.7,
+                    "2020": 83.3,
+                    "2021": 79.2,
+                    "nome": "Brasil"
+                },
+                {
+                    "2019": "",
+                    "2020": 75.3,
+                    "2021": "",
+                    "nome": "Bielorrússia"
+                },
+                {
+                    "2019": 76.5,
+                    "2020": 74.6,
+                    "2021": "",
+                    "nome": "Cazaquistão"
+                },
+                {
+                    "2019": "",
+                    "2020": 71.6,
+                    "2021": "",
+                    "nome": "Peru"
+                },
+                {
+                    "2019": "",
+                    "2020": 71.5,
+                    "2021": "",
+                    "nome": "Albânia"
+                },
+                {
+                    "2019": 66.7,
+                    "2020": 54.4,
+                    "2021": 75.7,
+                    "nome": "Índia"
+                },
+                {
+                    "2019": "",
+                    "2020": 59.3,
+                    "2021": "",
+                    "nome": "Bósnia e Herz"
+                },
+                {
+                    "2019": "",
+                    "2020": 59.4,
+                    "2021": "",
+                    "nome": "Macedônia do Norte"
+                },
+                {
+                    "2019": "",
+                    "2020": 56.9,
+                    "2021": "",
+                    "nome": "Sérvia"
+                },
+                {
+                    "2019": 74.8,
+                    "2020": "",
+                    "2021": 63.6,
+                    "nome": "Vietnã"
+                },
+                {
+                    "2019": 54.2,
+                    "2020": 54.4,
+                    "2021": 49.3,
+                    "nome": "México"
+                },
+                {
+                    "2019": "",
+                    "2020": 51.4,
+                    "2021": 46.7,
+                    "nome": "Montenegro"
+                },
+                {
+                    "2019": 67.8,
+                    "2020": 40.6,
+                    "2021": 43,
+                    "nome": "Tailândia"
+                },
+                {
+                    "2019": 47,
+                    "2020": 47.5,
+                    "2021": 42.1,
+                    "nome": "Rússia"
+                },
+                {
+                    "2019": "",
+                    "2020": 47.3,
+                    "2021": 41.5,
+                    "nome": "Bulgária"
+                },
+                {
+                    "2019": 40.2,
+                    "2020": 44.7,
+                    "2021": "",
+                    "nome": "Chile"
+                },
+                {
+                    "2019": "",
+                    "2020": 37.8,
+                    "2021": 33.8,
+                    "nome": "Romênia"
+                },
+                {
+                    "2019": "",
+                    "2020": 35.1,
+                    "2021": 31.3,
+                    "nome": "Hungria"
+                },
+                {
+                    "2019": "",
+                    "2020": 29.1,
+                    "2021": 30.3,
+                    "nome": "Malásia"
+                },
+                {
+                    "2019": "",
+                    "2020": 30.2,
+                    "2021": 28.9,
+                    "nome": "Croácia"
+                },
+                {
+                    "2019": "",
+                    "2020": 29.7,
+                    "2021": 28,
+                    "nome": "Eslováquia"
+                },
+                {
+                    "2019": "",
+                    "2020": 30,
+                    "2021": 27.1,
+                    "nome": "Letônia"
+                },
+                {
+                    "2019": 31.8,
+                    "2020": 28.3,
+                    "2021": 25.9,
+                    "nome": "Polônia"
+                },
+                {
+                    "2019": "",
+                    "2020": 26.5,
+                    "2021": 25.1,
+                    "nome": "Grécia"
+                },
+                {
+                    "2019": "",
+                    "2020": 27.8,
+                    "2021": 24.9,
+                    "nome": "Lituânia"
+                },
+                {
+                    "2019": 27.2,
+                    "2020": 26,
+                    "2021": 24.5,
+                    "nome": "Portugal"
+                },
+                {
+                    "2019": 30.4,
+                    "2020": 26.7,
+                    "2021": 24.4,
+                    "nome": "China"
+                },
+                {
+                    "2019": 17.6,
+                    "2020": "",
+                    "2021": 22.5,
+                    "nome": "África do Sul"
+                },
+                {
+                    "2019": "",
+                    "2020": 24.5,
+                    "2021": 21.4,
+                    "nome": "Tchéquia"
+                },
+                {
+                    "2019": "",
+                    "2020": 21,
+                    "2021": 19.8,
+                    "nome": "Estônia"
+                },
+                {
+                    "2019": "",
+                    "2020": 21.9,
+                    "2021": 19.7,
+                    "nome": "Eslovênia"
+                },
+                {
+                    "2019": "",
+                    "2020": 20.6,
+                    "2021": 19.6,
+                    "nome": "Malta"
+                },
+                {
+                    "2019": 15.9,
+                    "2020": 18.3,
+                    "2021": 18.8,
+                    "nome": "Itália"
+                },
+                {
+                    "2019": 15.7,
+                    "2020": 16.9,
+                    "2021": 16.2,
+                    "nome": "Espanha"
+                },
+                {
+                    "2019": "",
+                    "2020": 16.9,
+                    "2021": 16.1,
+                    "nome": "Taiwan"
+                },
+                {
+                    "2019": "",
+                    "2020": 14.1,
+                    "2021": 14.9,
+                    "nome": "Chipre"
+                },
+                {
+                    "2019": 10.8,
+                    "2020": 10.7,
+                    "2021": 11.3,
+                    "nome": "Hong Kong"
+                },
+                {
+                    "2019": "",
+                    "2020": 9.5,
+                    "2021": 11.2,
+                    "nome": "Suécia"
+                },
+                {
+                    "2019": 11.3,
+                    "2020": 10.9,
+                    "2021": 10.9,
+                    "nome": "Bélgica"
+                },
+                {
+                    "2019": 12.7,
+                    "2020": 11.8,
+                    "2021": 10.8,
+                    "nome": "Reino Unido"
+                },
+                {
+                    "2019": "",
+                    "2020": 10.3,
+                    "2021": 10.6,
+                    "nome": "Coreia do Sul"
+                },
+                {
+                    "2019": 9.9,
+                    "2020": 10.8,
+                    "2021": 10.5,
+                    "nome": "Áustria"
+                },
+                {
+                    "2019": 10.9,
+                    "2020": 10.5,
+                    "2021": 10.3,
+                    "nome": "França"
+                },
+                {
+                    "2019": "",
+                    "2020": 10.3,
+                    "2021": 10.3,
+                    "nome": "Países Baixos"
+                },
+                {
+                    "2019": 8.4,
+                    "2020": 9.8,
+                    "2021": 10.2,
+                    "nome": "Japão"
+                },
+                {
+                    "2019": "",
+                    "2020": 10.5,
+                    "2021": 9.8,
+                    "nome": "Finlândia"
+                },
+                {
+                    "2019": 9.9,
+                    "2020": 9.7,
+                    "2021": 9.5,
+                    "nome": "Alemanha"
+                },
+                {
+                    "2019": 9.1,
+                    "2020": "",
+                    "2021": 9.4,
+                    "nome": "Arábia Saudita"
+                },
+                {
+                    "2019": "",
+                    "2020": 8.9,
+                    "2021": 8.9,
+                    "nome": "Irlanda"
+                },
+                {
+                    "2019": 8.3,
+                    "2020": 9.2,
+                    "2021": 8.8,
+                    "nome": "Emirados Árabes"
+                },
+                {
+                    "2019": "",
+                    "2020": 9,
+                    "2021": 8.4,
+                    "nome": "Nova Zelândia"
+                },
+                {
+                    "2019": 8.7,
+                    "2020": 8.2,
+                    "2021": 8,
+                    "nome": "Canadá"
+                },
+                {
+                    "2019": 8.4,
+                    "2020": 8.1,
+                    "2021": 7.6,
+                    "nome": "Singapura"
+                },
+                {
+                    "2019": "",
+                    "2020": 7.7,
+                    "2021": 7.2,
+                    "nome": "Noruega"
+                },
+                {
+                    "2019": "",
+                    "2020": 7,
+                    "2021": 6.9,
+                    "nome": "Dinamarca"
+                },
+                {
+                    "2019": 6.7,
+                    "2020": 6.6,
+                    "2021": 6.4,
+                    "nome": "Luxemburgo"
+                },
+                {
+                    "2019": 7.1,
+                    "2020": 6.6,
+                    "2021": 6.4,
+                    "nome": "Austrália"
+                },
+                {
+                    "2019": 5.8,
+                    "2020": 6.1,
+                    "2021": 5.9,
+                    "nome": "Estados Unidos"
+                },
+                {
+                    "2019": 4.8,
+                    "2020": 4.4,
+                    "2021": 4.4,
+                    "nome": "Suíça"
+                }
+            ]
+
+        let seletor = document.querySelector('select')
+
+        seletor.addEventListener('change', desenhaGrafico)
+        function desenhaGrafico() {
+            /* Função desenhaGráfico */
+            /* Chamar função para remover barras */
+            resetar()
+            let ano = seletor.value
+            /* Para cada país da lista de países */
+            for (let pais of paises) {
+                console.log(pais.nome)
+                /* Se há dados de um país no ano escolhido */
+                console.log(pais[ano])
+                if (pais[ano] != "") {
+                    /*desenha a barra */
+                    desenhaBarra(pais)
+                }
+            }
+
+        }
+        /*  Cria função Desenha Barra */
+        function desenhaBarra(pais) {
+
+            // Seleciona a <ol> da página para escrevermos ela
+            let lista = document.querySelector( 'ol' )
+
+            /* let dias = pais[ano] */
+            let item = document.createElement('li')
+
+            let rotulo = document.createElement('span')
+            rotulo.textContent = pais.nome
+            item.append( rotulo )
+
+            let barra = document.createElement('span')
+            barra.textContent = pais.ano
+            item.append( barra )
+
+            let percentual = document.createElement('span')
+            percentual.textContent = pais.dia
+            item.append( percentual )
+
+            let itens = document.querySelectorAll ('li')
+
+            console.log(pais)
+            /* Criar uma div */
+            /* Alterar largura da div com base na variável dias */
+            /* Inserer a div no elemento da classe gráfico*/
+            document.querySelector("ol").append(item)
+        }
+
+
+        /* Criar função para remover barras */
+        function resetar() {
+            document.querySelector("ol").textContent = ""
+        }
+
+    </script>
+
+
+</body>
+
+</html>

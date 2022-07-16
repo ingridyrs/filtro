@@ -1,0 +1,23 @@
+/* Elementos de estilo do gráfico */
+.rotulo {
+    display: inline-block;
+    width: 120px;
+    font-size: 28px;
+  }
+  
+  /* Aplica cor e altura nas barras */
+  .barra {
+    display: inline-block;
+    width: 0;
+    height: 30px;
+    background: rgb(39, 194, 147);
+    transition: all 1s;
+  }
+  
+  
+  .percentual {
+    align-items: center;
+    color: black;
+    font-size: 30px;
+    margin-left: 20px;
+  }
